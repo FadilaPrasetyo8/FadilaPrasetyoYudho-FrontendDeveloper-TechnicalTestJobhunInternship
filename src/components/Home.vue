@@ -20,7 +20,7 @@ watch(
 onMounted(async () => {
   const shows = await allShows()
 
-  state.topRatedShows = shows.filter((item) => item.rating.average >= 7.5)
+  state.topRatedShows = shows.filter((item) => item.rating.average >= 8)
   console.log(state.topRatedShows)
 })
 
@@ -29,9 +29,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <input v-model="state.query" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none" placeholder="Search shows...">
+  <input v-model="state.query" type="search" id="default-search" class="block w-50 p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none" placeholder="Search shows...">
   <div class="shows grid md:grid-cols-3 lg:grid-cols-5 gap-8" data-test="items">
-      <ListMovie
+      <ListMovie class="mt-3"
         v-for="item in state.shows"
         :key="item.id"
         :id="item.id"
@@ -42,6 +42,7 @@ onMounted(async () => {
         :url="item.url"
       />
     </div>
+    <h1 class="font-bold mx-8" style="color: white;">All Movie</h1>
   <Movie class="mt-3" :shows="state.topRatedShows"/>
 </template>
 
